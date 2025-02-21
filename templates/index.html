@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title> Keyword Scanner App</title>
+
+    <!-- Links to external stylesheets -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;600&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+
+</head>
+
+</body>
+
+    <div class="banner">keyword scanner</div>
+    <div class="container">
+        <h3>UPLOAD FILES</h3>
+
+        <form action="/" method="post" enctype="multipart/form-data" id="upload-form">
+            <label for="file-upload" class="upload-area" id="drop-area">
+                <p>Drag & Drop files here or click to select</p>
+                <input type="file" id="file-upload" name="files[]" multiple required>
+            </label>
+            <ul id="file-list" class="file-list"></ul>
+            <button type="submit" class="scan-button" id="scan-btn">scan</button>
+        
+            <p id="processing-message" style="display:none;">processing...</p>
+            <div id="progress-container" style="display:none;"> <!-- Progress Bar -->
+                <div id="progress-bar"></div>
+            </div>
+        </form>
+
+        <!-- Conditional rendering for download links -->
+        {% if summary_file and excerpt_file %}
+        <div class="results">
+            <h3>DOWNLOAD RESULTS</h3>
+            <a href="{{ url_for('download_file', filename='summary_results.xlsx') }}" class="download-button">Keyword Match</a>
+            <a href="{{ url_for('download_file', filename='excerpt_results.xlsx') }}" class="download-button"> Excerpts</a>
+
+            <button type="button" class="new-search-button" id="new-search-btn">new search</button>
+        </div>
+        {% endif %}
+
+        
+    </div>
+
+    <script>       
+        const dropArea = document.getElementById("drop-area");
+        const fileInput = document.getElementById("file-upload");
+        const fileList = document.getElementById("file-list");
+        const progressContainer = document.getElementById("progress-container");
+        const progressBar = document.getElementById("progress-bar");
+        const newSearchBtn = document.getElementById("new-search-btn"); // New Search Button
+        let selectedFiles = [];  // Store full file objects
+
+
+        // Drag & Drop Events
+        function preventDefaults(e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+        ["dragenter", "dragover", "dragleave", "drop"].forEach(event => {
+            dropArea.addEventListener(event, preventDefaults, false);
+        });
+        dropArea.addEventListener("drop", (e) => {
+            dropArea.classList.remove("dragover");
+            handleFiles(e.dataTransfer.files);
+        });
+        fileInput.addEventListener("change", (e) => {
+            handleFiles(e.target.files);
+        });
+
+        // Handle Uploaded Files
+        function handleFiles(files) {
+            Array.from(files).forEach(file => {
+                if (!selectedFiles.some(f => f.name === file.name)) {  // Prevent duplicates
+                    selectedFiles.push(file);  // Store full file objects
+                    updateFileList();
+                }
+            });
+        }
+
+        // Update the File List in UI
+        function updateFileList() {
+            fileList.innerHTML = "";  // Clear the list before re-rendering
+
+            selectedFiles.forEach((file, index) => {
+                let li = document.createElement("li");
+                li.innerHTML = `<span class="file-name">${file.name}</span>
+                                <span class='delete-file' onclick='removeFile(${index})'>
+                                    <i class="fa-solid fa-trash-can"></i>
+                                </span>`;
+                fileList.appendChild(li);
+            });
+
+            checkScanButton();  // Update scan button state
+        }
+
+        // Remove File from List
+        function removeFile(index) {
+            if (index >= 0 && index < selectedFiles.length) {
+                selectedFiles.splice(index, 1);  // Remove file at the given index
+                updateFileList();  // Refresh file list UI
+            }
+
+            // Reset file input if all files are deleted
+            if (selectedFiles.length === 0) {
+                document.getElementById("file-upload").value = "";
+            }
+        }
+
+        // Disable Scan Button When No Files Are Selected
+        function checkScanButton() {
+            document.getElementById("scan-btn").disabled = selectedFiles.length === 0;
+        }
+
+        // Handle form submission (prevent reload and show processing message + progress bar, while keeping files listed)
+        document.getElementById("upload-form").addEventListener("submit", function (e) {
+            e.preventDefault(); // Prevent page reload
+
+            // Disable "Scan" button to prevent multiple clicks
+            document.getElementById("scan-btn").disabled = true;
+
+            // Show "Processing..." message
+            document.getElementById("processing-message").style.display = "block";
+
+            // Show and reset progress bar
+            progressContainer.style.display = "block";
+            progressBar.style.width = "0%";
+            progressBar.textContent = "0%";
+
+            // Keep files listed after scan
+            updateFileList();
+
+            // Simulate progress bar animation
+            let progress = 0;
+            const interval = setInterval(() => {
+                progress += 10; // Increase by 10% each step
+                progressBar.style.width = progress + "%";
+                progressBar.textContent = progress + "%";
+
+                if (progress >= 100) {
+                    clearInterval(interval);
+                    progressBar.textContent = "Complete!";
+
+                    setTimeout(() => {
+                        document.getElementById("processing-message").style.display = "none";
+                        progressContainer.style.display = "none";
+                        document.getElementById("scan-btn").disabled = false; // Re-enable scan button
+                    }, 1000);
+                }
+            }, 500); // Adjust timing as needed
+        });
+
+        // New Search functionality (reset form and file list)
+        newSearchBtn.addEventListener("click", function () {
+            // Reset selected files and clear the file list
+            selectedFiles = [];
+            fileList.innerHTML = "";
+
+            // Clear the file input
+            document.getElementById("file-upload").value = "";
+
+            // Reset the progress bar and hide progress
+            progressBar.style.width = "0%";
+            progressBar.textContent = "0%";
+            progressContainer.style.display = "none";
+
+            // Reset the processing message
+            document.getElementById("processing-message").style.display = "none";
+
+            // Enable the scan button
+            document.getElementById("scan-btn").disabled = false;
+        });
+    </script>
+
+</body>
+
+</html>

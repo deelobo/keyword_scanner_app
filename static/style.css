@@ -1,0 +1,250 @@
+/* === Global Styles === */
+body {
+    font-family: 'Open Sans', sans-serif;
+    background-color: #F1F1F1;
+    margin: 0;
+    padding: 0;
+}
+
+/* === Banner Header === */
+.banner {
+    background-color: #262525;
+    color: rgb(255, 255, 255);
+    font-family: 'Work Sans', sans-serif;
+    font-weight: 600;
+    font-size: 45px;
+    padding: 35px;
+    text-align: center;
+}
+
+/* === Main Content Container === */
+.container {
+    width: 50%;
+    margin: 40px auto;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+/* === File Upload Area === */
+.upload-area {
+    display: block;
+    max-width: 400px;
+    border: 1px dashed #640d0d;
+    padding: 30px;
+    margin: auto;
+    width: auto;
+    text-align: center;
+    cursor: pointer;
+    background-color: #ffffff;
+    position: relative;
+}
+
+.upload-area.dragover {
+    background-color: #ffffffe8;
+}
+
+/* Hidden File Input */
+#file-upload {
+    position: absolute;
+    width: 50%;
+    height: 50%;
+    opacity: 0;
+    cursor: pointer;
+}
+
+/* === File List Styling === */
+.file-list {
+    list-style-type: none;
+    padding: 0;
+    margin-top: 15px;
+    text-align: center;
+}
+
+.file-list li {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    background-color: #eaeaea;
+    padding: 8px;
+    margin: 5px 0;
+    border-radius: 5px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.file-list li span {
+    flex-grow: 1;
+    text-align: left;
+}
+
+/* Ensure file name is displayed normally, but visually truncated with ellipsis if too long */
+.file-list li span.file-name {
+    display: inline-block;
+    max-width: 200px;
+    /* Set a maximum width for the file name */
+    white-space: nowrap;
+    /* Prevent text from wrapping */
+    overflow: hidden;
+    /* Hide text that overflows */
+    text-overflow: ellipsis;
+    /* Add ellipsis when the text is too long */
+}
+
+/* Delete Button for Files */
+.delete-file {
+    cursor: pointer;
+    font-size: 18px;
+    padding: 5px 10px;
+    transition: color 0.2s;
+}
+
+.delete-file:hover {
+    color: darkred;
+    /* Turns darker on hover */
+    transform: scale(1.2);
+    /* Slightly enlarges on hover */
+}
+
+/* === "Scan" Button (Main Action Button) === */
+
+.scan-button {
+    width: 120px;
+    height: 50px;
+    font-size: 16px;
+    font-family: 'Work Sans', sans-serif;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #fff;
+    background-color: #862442;
+    border: none;
+    border-radius: 10px;
+}
+
+.scan-button:hover {
+    background-color: #de6569;
+}
+
+.scan-button:active {
+    background-color: #862442;
+    box-shadow: 0 2px #666;
+    transform: translateY(2px);
+}
+
+/* Progress Bar Container */
+.progress-container {
+    width: 100%;
+    max-width: 400px;
+    /* You can adjust this to make the progress bar bigger or smaller */
+    height: 20px;
+    background-color: #e0e0e0;
+    border-radius: 10px;
+    margin: 10px auto;
+    /* Centers the container horizontally */
+    overflow: hidden;
+    display: flex;
+    /* Ensures the progress bar is aligned */
+    justify-content: center;
+    /* Centers the progress bar */
+    align-items: center;
+    /* Aligns the progress bar vertically */
+}
+
+/* Progress Bar Fill */
+.progress-bar {
+    width: 0%;
+    /* Initial state (you'll modify this with JS) */
+    height: 100%;
+    background-color: #de6569;
+    /* The color of the progress bar */
+    text-align: center;
+    line-height: 20px;
+    /* Centers the text vertically inside the bar */
+    color: white;
+    font-weight: bold;
+    border-radius: 10px;
+    transition: width 0.5s ease-in-out;
+}
+
+/* === Results Section (Download Area) === */
+.results {
+    max-width: 400px;
+    margin: 30px auto;
+    padding: 20px;
+    border: 1px solid #F1F1F1;
+    background-color: #ffffff;
+    text-align: left;
+    border-radius: 3px;
+    display: flex;
+    flex-direction: row;
+    grid-template-columns: 1fr 10px;
+    align-items: center;
+    gap: 10px;
+    /* Adds spacing between buttons */
+}
+
+/* Apply a larger gap to the first element */
+.results>*:first-child {
+    margin-right: 30px;
+    /* Larger gap for the first item */
+}
+
+/* === Download Buttons (Keyword Match & Excerpts) === */
+.results .download-button {
+    display: inline-flex;
+    justify-content: center;
+    width: 120px;
+    height: 30px;
+    align-items: center;
+    line-height: 1;
+    font-size: 14px;
+    font-family: 'Work Sans', sans-serif;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #fff;
+    background-color: #862442;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 15px;
+}
+
+.results .download-button:hover{
+    background-color: #de6569;
+}
+
+/* New Search Button */
+.new-search-button {
+    width: 120px;
+    height: 50px;
+    font-size: 16px;
+    font-family: 'Work Sans', sans-serif;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #fff;
+    background-color: #862442;
+    border: none;
+    border-radius: 10px;
+    margin-left: 20px;
+    /* Space between scan and new search button */
+}
+
+.new-search-button:hover {
+    background-color: #de6569;
+    /* Darker blue when hovered */
+}
+
+.new-search-button:active {
+    background-color: #862442;
+    box-shadow: 0 2px #7d7d7d;
+    transform: translateY(2px);
+}
