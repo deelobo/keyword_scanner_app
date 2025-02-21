@@ -34,13 +34,15 @@ This repository contains a **very simply** amateur-ish Flask-based web applicati
 pip install -r requirements.txt
 ```
 
--Create a `requirements.txt` file that includes:
+- Create a `requirements.txt` file that includes all the libraries
 
-- Flask
-- pandas
-- PyMuPDF
-- python-docx
-- openpyxl
+   - Flask==2.2.3
+   - Werkzeug==2.2.3
+   - gunicorn==23.0.0
+   - pandas==2.2.1
+   - PyMuPDF==1.24.10
+   - python-docx==1.1.2
+   - openpyxl==3.1.2
 
 
 - Create a file named `dei_terms.txt` in the project root and add the keywords (one per line) you want to scan for.
@@ -60,6 +62,9 @@ keyword-scanner/
 └── static/
     └── style.css          # CSS styles for the UI (and any other static assets)
 ```
+## Deployment
+
+This application is designed and optimized to run on [Render](https://render.com). When deploying on Render, make sure to configure your environment variables and file paths as needed.
 
 ## Usage
 
