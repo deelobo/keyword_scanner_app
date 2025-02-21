@@ -81,4 +81,4 @@ Use the "new search" button to reset the interface and start over.
 
 ## License
 
-This project is licensed under the MIT License. See the LICENSE file for details.
+This project is licensed under Creative Commons Attribution-NonCommercial-ShareAlike (CC BY-NC-SA) license.
