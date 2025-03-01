@@ -117,7 +117,7 @@ When a keyword is found, the application records the occurrence, extracts the co
 
 ### References and Links
 
-- [U.S. Senate Committee on Commerce, Science & Transportation Report](https://www.commerce.senate.gov/services/files/4BD2D522-2092-4246-91A5-58EEF99750BC)
+- U.S. Senate Committee on Commerce, Science & Transportation Report (2024). **DEI: Division. Extremism. Ideology: How the Biden-Harris NSF Politicized Science**. Available at https://www.commerce.senate.gov/services/files/4BD2D522-2092-4246-91A5-58EEF99750BC
 - [Discover Flask](https://discoverflask.com)
 - [Render](https://render.com)
 
