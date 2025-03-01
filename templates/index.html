@@ -2,51 +2,60 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title> Keyword Scanner App</title>
-
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Keyword Scanner App</title>
     <!-- Links to external stylesheets -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;600&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
-
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;600&family=Open+Sans:wght@300;400;600&display=swap"
+        rel="stylesheet" />
 </head>
 
 <body>
     <div class="banner">keyword scanner</div>
     <div class="container">
+        <!-- File Upload Section -->
         <h3>UPLOAD FILES</h3>
-
         <form action="/" method="post" enctype="multipart/form-data" id="upload-form">
             <label for="file-upload" class="upload-area" id="drop-area">
                 <p>Drag & Drop files here or click to select</p>
-                <input type="file" id="file-upload" name="files[]" multiple required>
+                <input type="file" id="file-upload" name="files[]" multiple required />
             </label>
             <ul id="file-list" class="file-list"></ul>
             <button type="submit" class="scan-button" id="scan-btn">scan</button>
-            <p id="processing-message" style="display:none;">Processing...</p>
+            <p id="processing-message" style="display:none; font-size:20px;">
+                <i class="fa fa-spinner fa-spin"></i> Scanning for matches...
+            </p>
         </form>
 
+        <!-- Processed Output / Download Section (rendered when results exist) -->
         {% if summary_file and excerpt_file %}
-        <div class="results">
+        <div class="results" id="download-results">
             <h3>DOWNLOAD RESULTS</h3>
-            <a href="{{ url_for('download_file', filename='summary_results.xlsx') }}" class="download-button">Keyword
-                Match</a>
-            <a href="{{ url_for('download_file', filename='excerpt_results.xlsx') }}" class="download-button">
-                Excerpts</a>
+            <!-- Download buttons in a row -->
+            <div class="download-buttons">
+                <a href="{{ url_for('download_file', filename='summary_results.xlsx') }}"
+                    class="download-button">keyword match</a>
+                <a href="{{ url_for('download_file', filename='excerpt_results.xlsx') }}"
+                    class="download-button">excerpts</a>
+            </div>
+            <!-- New Search button below the download buttons row -->
+            <button type="button" class="clear-button" id="new-search-btn">new search</button>
         </div>
         {% endif %}
     </div>
 
     <script>
+        // File Upload & Drag-and-Drop Handling
         const dropArea = document.getElementById("drop-area");
         const fileInput = document.getElementById("file-upload");
         const fileList = document.getElementById("file-list");
-        let selectedFiles = [];  // Store full file objects
+        const scanBtn = document.getElementById("scan-btn");
+        let selectedFiles = [];  // Stores File objects
 
-        // Drag & Drop Events
+        // Prevent default behaviors for drag events
         function preventDefaults(e) {
             e.preventDefault();
             e.stopPropagation();
@@ -54,63 +63,76 @@
         ["dragenter", "dragover", "dragleave", "drop"].forEach(event => {
             dropArea.addEventListener(event, preventDefaults, false);
         });
+
+        // Add visual feedback for dragging
+        dropArea.addEventListener("dragover", () => dropArea.classList.add("dragover"));
+        dropArea.addEventListener("dragleave", () => dropArea.classList.remove("dragover"));
         dropArea.addEventListener("drop", (e) => {
             dropArea.classList.remove("dragover");
             handleFiles(e.dataTransfer.files);
         });
+
+        // Handle manual file selection
         fileInput.addEventListener("change", (e) => {
             handleFiles(e.target.files);
         });
 
-        // Handle Uploaded Files
+        // Add new files, avoiding duplicates
         function handleFiles(files) {
             Array.from(files).forEach(file => {
-                if (!selectedFiles.some(f => f.name === file.name)) {  // Prevent duplicates
-                    selectedFiles.push(file);  // Store full file objects
+                if (!selectedFiles.some(f => f.name === file.name)) {
+                    selectedFiles.push(file);
                     updateFileList();
                 }
             });
         }
 
-        // Update the File List in UI
-        function updateFileList() {
-            fileList.innerHTML = "";  // Clear the list before re-rendering
+        // Sync the file input using DataTransfer
+        function updateFileInput() {
+            const dataTransfer = new DataTransfer();
+            selectedFiles.forEach(file => dataTransfer.items.add(file));
+            fileInput.files = dataTransfer.files;
+        }
 
+        // Update the UI list of files and the file input
+        function updateFileList() {
+            fileList.innerHTML = "";
             selectedFiles.forEach((file, index) => {
-                let li = document.createElement("li");
+                const li = document.createElement("li");
                 li.innerHTML = `<span class="file-name">${file.name}</span>
-                                <span class="delete-file" onclick="removeFile(${index})">
-                                    <i class="fa-solid fa-trash-can"></i>
-                                </span>`;
+                        <span class="delete-file" onclick="removeFile(${index})">
+                          <i class="fa-solid fa-trash-can"></i>
+                        </span>`;
                 fileList.appendChild(li);
             });
-
-            checkScanButton();  // Update button state
+            updateFileInput();
+            scanBtn.disabled = selectedFiles.length === 0;
         }
 
-        // Remove File from List
+        // Remove a file from selection
         function removeFile(index) {
             if (index >= 0 && index < selectedFiles.length) {
-                selectedFiles.splice(index, 1);  // Remove file at the given index
-                updateFileList();  // Refresh file list UI
+                selectedFiles.splice(index, 1);
+                updateFileList();
             }
-
-            // Reset file input if all files are deleted
             if (selectedFiles.length === 0) {
-                document.getElementById("file-upload").value = "";
+                fileInput.value = "";
             }
         }
 
-        // Disable Scan Button When No Files Are Selected
-        function checkScanButton() {
-            document.getElementById("scan-btn").disabled = selectedFiles.length === 0;
-        }
-
-        // Disable Button & Show "Processing..." on Form Submission
+        // Show processing message and disable the scan button on submit
         document.getElementById("upload-form").addEventListener("submit", function () {
-            document.getElementById("scan-btn").disabled = true;
+            scanBtn.disabled = true;
             document.getElementById("processing-message").style.display = "block";
         });
+
+        // New Search button handler: reloads the page to clear processed results
+        const newSearchBtn = document.getElementById("new-search-btn");
+        if (newSearchBtn) {
+            newSearchBtn.addEventListener("click", function () {
+                window.location.href = "/";
+            });
+        }
     </script>
 </body>
 
