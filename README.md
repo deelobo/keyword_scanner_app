@@ -18,7 +18,8 @@ This repository contains a simple web application built with Python and Flask to
    - 🚫 It may stop working entirely if the monthly usage limit has been reached.
    - 🔧 As of now, I don't plan to upgrade the hosting instance. I **highly** encourage you to fork this repository and create your own instance on Render. Here is the tutorial: [Render Tutorial](https://render.com/docs/free)
 
-3. ⚠️ This application **was not** designed or tested for production use (that is, for continued or mass use). It is an experimental project, and <span style="color: purple;">**I welcome your contributions to improve it!**</span>  
+3. ⚠️ This application **was not** designed or tested for production use (that is, for continued or mass use). It is an experimental project, and...
+    #### 🚀 **I welcome your contributions to improve it!** 🚀
 
 
 ## Features
