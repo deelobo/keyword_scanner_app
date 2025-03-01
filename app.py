@@ -27,6 +27,8 @@ def extract_text_from_file(file_path):
             text = extract_text_from_word(file_path)
         elif file_path.lower().endswith((".xls", ".xlsx")):
             text = extract_text_from_excel(file_path)
+        elif file_path.lower().endswith((".csv")):
+            text = extract_text_from_csv(file_path)
         else:
             print(f"Unsupported file type: {file_path}")
     except Exception as e:
@@ -67,6 +69,18 @@ def extract_text_from_excel(file_path):
             text += " ".join(df[column].astype(str).tolist()) + " "
     except Exception as e:
         print(f"Error reading Excel file {file_path}: {e}")
+    return text
+
+
+# Extract text from CSV files
+def extract_text_from_csv(file_path):
+    text = ""
+    try:
+        df = pd.read_csv(file_path)
+        for column in df.columns:
+            text += " ".join(df[column].astype(str).tolist()) + " "
+    except Exception as e:
+        print(f"Error reading CSV file {file_path}: {e}")
     return text
 
 
@@ -133,11 +147,11 @@ def process_files(files):
     summary_df = pd.DataFrame(summary_results)
     excerpt_df = pd.DataFrame(excerpt_results)
 
-    summary_file_path = os.path.join(RESULTS_FOLDER, "summary_results.xlsx")
-    excerpt_file_path = os.path.join(RESULTS_FOLDER, "excerpt_results.xlsx")
+    summary_file_path = os.path.join(RESULTS_FOLDER, "summary_results.csv")
+    excerpt_file_path = os.path.join(RESULTS_FOLDER, "excerpt_results.csv")
 
-    summary_df.to_excel(summary_file_path, index=False)
-    excerpt_df.to_excel(excerpt_file_path, index=False)
+    summary_df.to_csv(summary_file_path, index=False)
+    excerpt_df.to_csv(excerpt_file_path, index=False)
 
     return summary_file_path, excerpt_file_path
 
