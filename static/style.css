@@ -35,61 +35,78 @@ body {
     text-align: center;
     display: inline-block;
     max-width: 100%;
-    font-size: 18px;
-    margin-bottom: 20px;
-}
-
-.introduction h2 {
-    font-family: 'Work Sans', sans-serif;
-    font-size: 35px;
+    font-size: 17px;
     margin-bottom: 10px;
-    margin-top: 0px;
-    margin-top: px;
-    text-align: center;
-    color: #a52c51;
 }
 
 .introduction p {
-    font-size: 18px;
-    margin-right: 10px;
-    margin-left: 10px;
+    margin-right: 40px;
+    margin-left: 40px;
     line-height: 1.5;
     color: #333;
     text-align: justify;
     /* Justify the text */
-    text-align-last: left;
+    text-align-last: center;
     /* Center-align the last line */
-    hyphens: auto;
-    /* Enable automatic hyphenation */
+    /* hyphens: auto;  */
     word-spacing: normal;
     /* Adjust word spacing */
     letter-spacing: normal;
     /* Adjust letter spacing */
 }
 
+.summary_heading {
+    font-size: 16px;
+    font-weight: 400;
+    cursor: pointer;
+    padding: 5px;
+    margin-left: 30px;
+    margin-right: 30px;
+    position: relative;
+    background-color: #f8f6f6;
+    border-radius: 10px;
+    padding-right: 10px;
+    /* space for the arrow */
+}
+
+/* Add a subtle border or box shadow on hover */
+.summary_heading:hover {
+    background-color: #f0f0f0;
+}
+
 .introduction ol {
     text-align: left;
     /* Left-align the list */
     padding-left: 20px;
-    /* Add padding to align with the centered text */
+    margin-left: 30px;
+    margin-right: 30px;
     display: inline-block;
     /* Ensure it doesn't take the full width */
     max-width: 100%;
     /* Ensure it doesn't overflow */
+    background-color: #f8f6f6;
+    border-radius: 10px;
+    margin-top: 1px;
 }
 
 .introduction ol li {
     font-size: 16px;
-    margin-left: 50px;
-    margin-right: 35px;
+    margin-left: 30px;
+    margin-right: 30px;
     margin-bottom: 15px;
+    margin-top: 15px;
     line-height: 1.5;
+}
+
+.introduction ol li::marker {
+    font-weight: 900;
+    color: #862442
 }
 
 /* Upload Container */
 .upload-container {
     background-color: #ffffff;
-    padding: 20px;
+    padding: 30px;
     border-radius: 10px;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     text-align: center;
@@ -97,7 +114,7 @@ body {
 
 .upload-container h3 {
     margin-top: 0;
-    font-size: 20px;
+    font-size: 18px;
     color: #333;
 }
 
@@ -218,7 +235,7 @@ body {
     max-width: 500px;
     margin: 30px auto;
     padding: 30px;
-    border: 1px solid #F1F1F1;
+    border: 1px solid #e9e8e8;
     background-color: #ffffff;
     text-align: center;
     border-radius: 3px;
@@ -244,8 +261,9 @@ body {
 .download-button {
     display: inline-flex;
     justify-content: center;
+    font-weight: 600;
     width: 120px;
-    height: 30px;
+    height: 35px;
     align-items: center;
     font-size: 16px;
     font-family: 'Work Sans', sans-serif;
@@ -253,14 +271,14 @@ body {
     text-align: center;
     text-decoration: none;
     color: #fff;
-    background-color: #d1687b;
+    background-color: #2c2b2b;
     border: none;
     border-radius: 10px;
     padding: 10px 15px;
 }
 
 .download-button:hover {
-    background-color: #e3565a;
+    background-color: #000000;
 }
 
 /* Responsive Design: Stack containers vertically on smaller screens */
