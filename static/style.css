@@ -27,6 +27,16 @@ body {
 }
 
 /* Introduction Container */
+
+.intro-container {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+    text-align: center;
+}
+
 .introduction {
     font-size: 18px;
     text-align: center;
@@ -47,7 +57,7 @@ body {
     margin-bottom: 10px;
     margin-top: 0px;
     text-align: center;
-    color: #333;
+    color: #a52c51;
 }
 
 .introduction p {
