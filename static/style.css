@@ -264,7 +264,7 @@ body {
     background-color: #e3565a;
 }
 
-/* Responsive Design: Stack containers vertically on smaller screens */
+/* Responsive Design */
 @media (max-width: 768px) {
     .container {
         width: 90%;
