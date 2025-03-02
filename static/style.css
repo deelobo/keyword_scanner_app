@@ -19,15 +19,9 @@ body {
 .container {
     width: 50%;
     margin: 40px auto;
-    background-color: #ffffff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    text-align: center;
 }
 
 /* Introduction Container */
-
 .intro-container {
     background-color: #ffffff;
     padding: 20px;
@@ -38,17 +32,11 @@ body {
 }
 
 .introduction {
-    font-size: 18px;
     text-align: center;
     display: inline-block;
     max-width: 100%;
+    font-size: 18px;
     margin-bottom: 20px;
-    background-color: #ffffff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    margin-bottom: 30px;
-    text-align: center;
 }
 
 .introduction h2 {
@@ -56,29 +44,38 @@ body {
     font-size: 35px;
     margin-bottom: 10px;
     margin-top: 0px;
+    margin-top: px;
     text-align: center;
     color: #a52c51;
 }
 
 .introduction p {
     font-size: 18px;
+    margin-right: 10px;
+    margin-left: 10px;
     line-height: 1.5;
-    margin-top: 10px;
-    margin-bottom: 10px;
     color: #333;
     text-align: justify;
+    /* Justify the text */
     text-align-last: left;
+    /* Center-align the last line */
     hyphens: auto;
+    /* Enable automatic hyphenation */
     word-spacing: normal;
+    /* Adjust word spacing */
     letter-spacing: normal;
+    /* Adjust letter spacing */
 }
 
 .introduction ol {
-    font-size: 18px;
-    text-align: left; 
+    text-align: left;
+    /* Left-align the list */
     padding-left: 20px;
+    /* Add padding to align with the centered text */
     display: inline-block;
+    /* Ensure it doesn't take the full width */
     max-width: 100%;
+    /* Ensure it doesn't overflow */
 }
 
 .introduction ol li {
@@ -89,8 +86,8 @@ body {
     line-height: 1.5;
 }
 
-/* Upload and Results Container */
-.upload-results-container {
+/* Upload Container */
+.upload-container {
     background-color: #ffffff;
     padding: 20px;
     border-radius: 10px;
@@ -98,7 +95,7 @@ body {
     text-align: center;
 }
 
-.upload-results-container h3 {
+.upload-container h3 {
     margin-top: 0;
     font-size: 20px;
     color: #333;
@@ -107,10 +104,10 @@ body {
 /* File Upload Area */
 .upload-area {
     display: block;
-    max-width: 400px;
-    border: 1x dashed #a52c51;
+    max-width: 500px;
+    border: 1.7px dashed #a52c51;
     padding: 30px;
-    margin: auto;
+    margin: 20px auto;
     text-align: center;
     cursor: pointer;
     background-color: #ffffff;
@@ -218,7 +215,7 @@ body {
 
 /* Download Results Section */
 .results {
-    max-width: 400px;
+    max-width: 500px;
     margin: 30px auto;
     padding: 30px;
     border: 1px solid #F1F1F1;
@@ -234,7 +231,6 @@ body {
 .results h3 {
     margin-top: 1px;
     margin-bottom: 10px;
-    /* Adjust this value as needed */
 }
 
 /* Container for download buttons */
@@ -267,7 +263,7 @@ body {
     background-color: #e3565a;
 }
 
-/* Responsive Design */
+/* Responsive Design: Stack containers vertically on smaller screens */
 @media (max-width: 768px) {
     .container {
         width: 90%;

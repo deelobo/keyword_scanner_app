@@ -16,6 +16,7 @@
 <body>
     <div class="banner">keyword scanner</div>
     <div class="container">
+        <!-- Introduction Container -->
         <div class="intro-container">
             <div class="introduction">
                 <h2>Hello!</h2>
@@ -29,21 +30,29 @@
                     <strong>Scan</strong> button to get started.
                 </p>
                 <details>
-                    <summary><strong>But, before you begin, here are three must-know things about the app (click to expand):</strong>
+                    <summary><strong>But, before you begin, here are three must-know things about the app (click to
+                            expand):</strong>
                     </summary>
                     <ol>
                         <li>
-                            It only detects the exact terms listed in the Appendix B of the report and does not consider the context in which
-                            words and phrases are used. Detailed information about what the app does (and doesn’t do) is available in its
+                            It only detects the exact terms listed in the Appendix B of the report and does not consider
+                            the context in which
+                            words and phrases are used. Detailed information about what the app does (and doesn’t do) is
+                            available in its
                             <a href="https://github.com/yourusername/yourrepo" target="_blank">GitHub repository</a>.
                         </li>
                         <li>
-                            It supports TXT, DOCX, CSV, XLS/XLSX,and searchable PDF files, and works best with small documents and file sizes (a few pages and MBs). 
-                            Scanned PDFs and image files are not supported. Processing large files may take longer or cause the app to crash.
+                            It supports TXT, DOCX, CSV, XLS/XLSX,and searchable PDF files, and works best with small
+                            documents and file sizes (a few
+                            pages and MBs).
+                            Scanned PDFs and image files are not supported. Processing large files may take longer or
+                            cause the app to crash.
                         </li>
-                        </li>
-                            It runs on a free-tier plan of the hosting server and was not built for mass or commercial use. Because of that, it may
-                            be slow, go offline after a few minutes of inactivity, or stop working if usage limits are reached.
+                        <li>
+                            It runs on a free-tier plan of the hosting server and was not built for mass or commercial
+                            use. Because of that, it may
+                            be slow, go offline after a few minutes of inactivity, or stop working if usage limits are
+                            reached.
                             You are more than welcome to fork its
                             <a href="https://github.com/yourusername/yourrepo" target="_blank">GitHub repository</a>
                             to create your own app or help out to improve this one!
@@ -53,8 +62,8 @@
             </div>
         </div>
 
-        <div class="upload-results-container">
-            <!-- File Upload Section -->
+        <!-- Upload Container -->
+        <div class="upload-container">
             <h3>UPLOAD FILES</h3>
             <form action="/" method="post" enctype="multipart/form-data" id="upload-form">
                 <label for="file-upload" class="upload-area" id="drop-area">
@@ -64,7 +73,7 @@
                 <ul id="file-list" class="file-list"></ul>
                 <button type="submit" class="scan-button" id="scan-btn">scan</button>
                 <p id="processing-message" style="display:none; font-size:20px;">
-                    <i class="fa fa-spinner fa-spin"></i> Scanning for matches...
+                    <i class="fa fa-spinner fa-spin"></i> Cooking up your results...
                 </p>
             </form>
 
@@ -72,12 +81,11 @@
             {% if summary_file and excerpt_file %}
             <div class="results" id="download-results">
                 <h3>DOWNLOAD RESULTS</h3>
-                <!-- Download buttons in a row -->
                 <div class="download-buttons">
-                    <a href="{{ url_for('download_file', filename=summary_file) }}" class="download-button">keyword match</a>
+                    <a href="{{ url_for('download_file', filename=summary_file) }}" class="download-button">keyword
+                        match</a>
                     <a href="{{ url_for('download_file', filename=excerpt_file) }}" class="download-button">excerpts</a>
                 </div>
-                <!-- New Search button below the download buttons row -->
                 <button type="button" class="clear-button" id="new-search-btn">new search</button>
             </div>
             {% endif %}
@@ -90,9 +98,8 @@
         const fileInput = document.getElementById("file-upload");
         const fileList = document.getElementById("file-list");
         const scanBtn = document.getElementById("scan-btn");
-        let selectedFiles = [];  // Stores File objects
+        let selectedFiles = [];
 
-        // Prevent default behaviors for drag events
         function preventDefaults(e) {
             e.preventDefault();
             e.stopPropagation();
@@ -101,7 +108,6 @@
             dropArea.addEventListener(event, preventDefaults, false);
         });
 
-        // Add visual feedback for dragging
         dropArea.addEventListener("dragover", () => dropArea.classList.add("dragover"));
         dropArea.addEventListener("dragleave", () => dropArea.classList.remove("dragover"));
         dropArea.addEventListener("drop", (e) => {
@@ -109,12 +115,10 @@
             handleFiles(e.dataTransfer.files);
         });
 
-        // Handle manual file selection
         fileInput.addEventListener("change", (e) => {
             handleFiles(e.target.files);
         });
 
-        // Add new files, avoiding duplicates
         function handleFiles(files) {
             Array.from(files).forEach(file => {
                 if (!selectedFiles.some(f => f.name === file.name)) {
@@ -124,29 +128,26 @@
             });
         }
 
-        // Sync the file input using DataTransfer
         function updateFileInput() {
             const dataTransfer = new DataTransfer();
             selectedFiles.forEach(file => dataTransfer.items.add(file));
             fileInput.files = dataTransfer.files;
         }
 
-        // Update the UI list of files and the file input
         function updateFileList() {
             fileList.innerHTML = "";
             selectedFiles.forEach((file, index) => {
                 const li = document.createElement("li");
                 li.innerHTML = `<span class="file-name">${file.name}</span>
-                        <span class="delete-file" onclick="removeFile(${index})">
-                          <i class="fa-solid fa-trash-can"></i>
-                        </span>`;
+                          <span class="delete-file" onclick="removeFile(${index})">
+                            <i class="fa-solid fa-trash-can"></i>
+                          </span>`;
                 fileList.appendChild(li);
             });
             updateFileInput();
             scanBtn.disabled = selectedFiles.length === 0;
         }
 
-        // Remove a file from selection
         function removeFile(index) {
             if (index >= 0 && index < selectedFiles.length) {
                 selectedFiles.splice(index, 1);
@@ -157,13 +158,11 @@
             }
         }
 
-        // Show processing message and disable the scan button on submit
         document.getElementById("upload-form").addEventListener("submit", function () {
             scanBtn.disabled = true;
             document.getElementById("processing-message").style.display = "block";
         });
 
-        // New Search button handler: reloads the page to clear processed results
         const newSearchBtn = document.getElementById("new-search-btn");
         if (newSearchBtn) {
             newSearchBtn.addEventListener("click", function () {
