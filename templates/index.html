@@ -19,19 +19,14 @@
         <!-- Introduction Container -->
         <div class="intro-container">
             <div class="introduction">
-                <h2>Hello!</h2>
                 <p>
                     This app scans documents for the "DEI terms" listed in the 2024 report
                     <i>"DEI: Division. Extremism. Ideology: How the Biden-Harris NSF Politicized Science"</i> by the
                     U.S. Senate Committee on Commerce, Science, and Transportation.
                 </p>
-                <p>
-                    Simply drag and drop your files or click to select them, then click the
-                    <strong>Scan</strong> button to get started.
-                </p>
                 <details>
-                    <summary><strong>But, before you begin, here are three must-know things about the app (click to
-                            expand):</strong>
+                    <summary class="summary_heading"> Here are three <strong>must-know</strong> things about the app
+                        (click to expand)
                     </summary>
                     <ol>
                         <li>
@@ -59,6 +54,12 @@
                         </li>
                     </ol>
                 </details>
+                <p
+                    style=" font-size: 18px; text-align: center; text-align-last: center; margin-right: 50px; margin-left: 50px;">
+                    <strong>
+                        To get started, simply drag and drop your files or click to select them, then click the scan
+                        button.</strong>
+                </p>
             </div>
         </div>
 
@@ -73,7 +74,7 @@
                 <ul id="file-list" class="file-list"></ul>
                 <button type="submit" class="scan-button" id="scan-btn">scan</button>
                 <p id="processing-message" style="display:none; font-size:20px;">
-                    <i class="fa fa-spinner fa-spin"></i> Cooking up your results...
+                    <i class="fa fa-spinner fa-spin"></i> Scanning for matches...
                 </p>
             </form>
 
