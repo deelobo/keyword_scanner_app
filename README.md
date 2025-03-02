@@ -1,6 +1,6 @@
 ## Keyword Scanner
 
-This repository contains a simple web application built with Python and Flask to automate the scanning of documents for approx. **700 keywords and phrases** identified as "DEI" terms in the 2024 report titled "DEI: Division. Extremism. Ideology: How the Biden-Harris NSF Politicized Science" by the U.S. Senate Committee on Commerce, Science, and Transportation.
+This repository contains a simple web application built with Python and Flask to automate the scanning of documents for approx. **700 keywords and phrases** identified as "DEI terms" in the 2024 report titled "DEI: Division. Extremism. Ideology: How the Biden-Harris NSF Politicized Science" by the U.S. Senate Committee on Commerce, Science, and Transportation.
 
 **What does the app do?** It extracts text from various file types, searches for keyword matches, and generates keyword match summary and excerpt reports in a spreadsheet format. For more details, please see the [What the App Does and Limitations](https://github.com/yourusername/yourrepo) section below.
 
