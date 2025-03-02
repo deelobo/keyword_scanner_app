@@ -1,9 +1,11 @@
 import os
 import re
+import uuid
 import pandas as pd
-import fitz  # PyMuPDF for PDFs
-import docx  # For Word documents
+import fitz
+import docx
 from flask import Flask, request, render_template, send_file
+from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
 
@@ -18,15 +20,18 @@ os.makedirs(RESULTS_FOLDER, exist_ok=True)
 def extract_text_from_file(file_path):
     text = ""
     try:
-        if file_path.lower().endswith(".txt"):
+        file_extension = os.path.splitext(file_path)[1].lower().strip()
+        if file_extension == ".txt":
             with open(file_path, "r", encoding="utf-8") as file:
                 text = file.read()
-        elif file_path.lower().endswith(".pdf"):
+        elif file_extension == ".pdf":
             text = extract_text_from_pdf(file_path)
-        elif file_path.lower().endswith(".docx"):
+        elif file_extension == ".docx":
             text = extract_text_from_word(file_path)
-        elif file_path.lower().endswith((".xls", ".xlsx")):
+        elif file_extension in (".xls", ".xlsx"):
             text = extract_text_from_excel(file_path)
+        elif file_extension == ".csv":
+            text = extract_text_from_csv(file_path)
         else:
             print(f"Unsupported file type: {file_path}")
     except Exception as e:
@@ -70,6 +75,18 @@ def extract_text_from_excel(file_path):
     return text
 
 
+# Extract text from CSV files
+def extract_text_from_csv(file_path):
+    text = ""
+    try:
+        df = pd.read_csv(file_path)
+        for column in df.columns:
+            text += " ".join(df[column].astype(str).tolist()) + " "
+    except Exception as e:
+        print(f"Error reading CSV file {file_path}: {e}")
+    return text
+
+
 # Load keywords from file
 def load_keywords():
     try:
@@ -100,7 +117,6 @@ def keyword_search(text, keywords):
             matched_terms[keyword] = len(matches)
     return matched_terms
 
-
 # Process uploaded files
 def process_files(files):
     keywords = load_keywords()
@@ -108,7 +124,10 @@ def process_files(files):
     excerpt_results = []
 
     for file in files:
-        file_path = os.path.join(UPLOAD_FOLDER, file.filename)
+        # Generate a secure and unique filename to prevent collisions.
+        original_filename = secure_filename(file.filename)
+        unique_filename = f"{uuid.uuid4().hex}_{original_filename}"
+        file_path = os.path.join(UPLOAD_FOLDER, unique_filename)
         file.save(file_path)
 
         text = extract_text_from_file(file_path)
@@ -116,7 +135,7 @@ def process_files(files):
             matched_terms = keyword_search(text, keywords)
             summary_results.append(
                 {
-                    "File_Name": file.filename,
+                    "File_Name": original_filename,  # Store original name for clarity.
                     "Matched_Terms": (
                         ", ".join(matched_terms.keys()) if matched_terms else "None"
                     ),
@@ -127,19 +146,24 @@ def process_files(files):
 
             excerpts = extract_sentences_with_keywords(text, keywords)
             for excerpt in excerpts:
-                excerpt["File_Name"] = file.filename
+                excerpt["File_Name"] = original_filename
                 excerpt_results.append(excerpt)
 
     summary_df = pd.DataFrame(summary_results)
     excerpt_df = pd.DataFrame(excerpt_results)
 
-    summary_file_path = os.path.join(RESULTS_FOLDER, "summary_results.xlsx")
-    excerpt_file_path = os.path.join(RESULTS_FOLDER, "excerpt_results.xlsx")
+    # Generate unique result filenames to avoid clashes between users.
+    unique_id = uuid.uuid4().hex
+    summary_file_path = os.path.join(RESULTS_FOLDER, f"summary_results_{unique_id}.csv")
+    excerpt_file_path = os.path.join(RESULTS_FOLDER, f"excerpt_results_{unique_id}.csv")
 
-    summary_df.to_excel(summary_file_path, index=False)
-    excerpt_df.to_excel(excerpt_file_path, index=False)
+    summary_df.to_csv(summary_file_path, index=False)
+    excerpt_df.to_csv(excerpt_file_path, index=False)
 
-    return summary_file_path, excerpt_file_path
+    # Return only the base filenames for ease of use in the template.
+    summary_filename = os.path.basename(summary_file_path)
+    excerpt_filename = os.path.basename(excerpt_file_path)
+    return summary_filename, excerpt_filename
 
 
 @app.route("/", methods=["GET", "POST"])

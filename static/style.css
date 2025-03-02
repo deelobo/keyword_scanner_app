@@ -7,7 +7,7 @@ body {
 
 .banner {
     background-color: #262525;
-    color: rgb(255, 255, 255);
+    color: #fff;
     font-family: 'Work Sans', sans-serif;
     font-weight: 600;
     font-size: 45px;
@@ -15,29 +15,121 @@ body {
     text-align: center;
 }
 
-/* === Main Content Container === */
+/* Container for overall content */
 .container {
     width: 50%;
     margin: 40px auto;
+}
+
+/* Introduction Container */
+.intro-container {
     background-color: #ffffff;
     padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.introduction {
+    text-align: center;
+    display: inline-block;
+    max-width: 100%;
+    font-size: 17px;
+    margin-bottom: 10px;
+}
+
+.introduction p {
+    margin-right: 40px;
+    margin-left: 40px;
+    line-height: 1.5;
+    color: #333;
+    text-align: justify;
+    /* Justify the text */
+    text-align-last: center;
+    /* Center-align the last line */
+    /* hyphens: auto;  */
+    word-spacing: normal;
+    /* Adjust word spacing */
+    letter-spacing: normal;
+    /* Adjust letter spacing */
+}
+
+.summary_heading {
+    font-size: 16px;
+    font-weight: 400;
+    cursor: pointer;
+    padding: 5px;
+    margin-left: 30px;
+    margin-right: 30px;
+    position: relative;
+    background-color: #f8f6f6;
+    border-radius: 10px;
+    padding-right: 10px;
+    /* space for the arrow */
+}
+
+/* Add a subtle border or box shadow on hover */
+.summary_heading:hover {
+    background-color: #f0f0f0;
+}
+
+.introduction ol {
+    text-align: left;
+    /* Left-align the list */
+    padding-left: 20px;
+    margin-left: 30px;
+    margin-right: 30px;
+    display: inline-block;
+    /* Ensure it doesn't take the full width */
+    max-width: 100%;
+    /* Ensure it doesn't overflow */
+    background-color: #f8f6f6;
+    border-radius: 10px;
+    margin-top: 1px;
+}
+
+.introduction ol li {
+    font-size: 16px;
+    margin-left: 30px;
+    margin-right: 30px;
+    margin-bottom: 15px;
+    margin-top: 15px;
+    line-height: 1.5;
+}
+
+.introduction ol li::marker {
+    font-weight: 900;
+    color: #862442
+}
+
+/* Upload Container */
+.upload-container {
+    background-color: #ffffff;
+    padding: 30px;
     border-radius: 10px;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     text-align: center;
 }
 
-/* === File Upload Area === */
+.upload-container h3 {
+    margin-top: 0;
+    font-size: 18px;
+    color: #333;
+}
+
+/* File Upload Area */
 .upload-area {
     display: block;
-    max-width: 400px;
-    border: 1px dashed #640d0d;
+    max-width: 500px;
+    border: 1.7px dashed #a52c51;
     padding: 30px;
-    margin: auto;
-    width: auto;
+    margin: 20px auto;
     text-align: center;
     cursor: pointer;
     background-color: #ffffff;
     position: relative;
+    transition: background-color 0.2s ease;
 }
 
 .upload-area.dragover {
@@ -52,8 +144,7 @@ body {
     cursor: pointer;
 }
 
-/* === File List Styling === */
-
+/* File List Styling */
 .file-list {
     list-style-type: none;
     padding: 0;
@@ -64,7 +155,6 @@ body {
 .file-name {
     display: inline-block;
     max-width: 200px;
-    /* adjust as needed */
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -76,12 +166,10 @@ body {
     align-items: center;
     background-color: #eaeaea;
     padding: 8px;
-    margin: 5px 0;
+    margin: 5px auto;
     border-radius: 5px;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
     width: 50%;
-    margin-left: auto;
-    margin-right: auto;
 }
 
 .file-list li span {
@@ -89,24 +177,21 @@ body {
     text-align: left;
 }
 
-/* Delete Button for Files */
 .delete-file {
     cursor: pointer;
     font-size: 18px;
     padding: 5px 10px;
-    transition: color 0.2s;
+    transition: color 0.2s, transform 0.2s;
 }
 
 .delete-file:hover {
     color: darkred;
-    /* Turns darker on hover */
     transform: scale(1.2);
-    /* Slightly enlarges on hover */
 }
 
-/* === "Scan" Button (Main Action Button) === */
-
-.scan-button {
+/* Buttons */
+.scan-button,
+.clear-button {
     width: 120px;
     height: 50px;
     font-size: 18px;
@@ -117,65 +202,88 @@ body {
     text-decoration: none;
     outline: none;
     color: #fff;
-    background-color: #862442;
     border: none;
     border-radius: 10px;
+    margin: 10px;
+}
+
+.scan-button {
+    background-color: #a52c51;
 }
 
 .scan-button:hover {
-    background-color: #de6569;
+    background-color: #c50b4f;
 }
 
 .scan-button:active {
     background-color: #862442;
-    box-shadow: 0 2px #666;
     transform: translateY(2px);
 }
 
-/* === Results Section (Download Area) === */
+.clear-button {
+    background-color: #a52c51;
+    margin-top: 30px;
+    margin-bottom: 5px;
+}
+
+.clear-button:hover {
+    background-color: #c50b4f;
+}
+
+/* Download Results Section */
 .results {
-    max-width: 400px;
+    max-width: 500px;
     margin: 30px auto;
-    padding: 40px;
-    border: 1px solid #F1F1F1;
+    padding: 30px;
+    border: 1px solid #e9e8e8;
     background-color: #ffffff;
-    text-align: left;
+    text-align: center;
     border-radius: 3px;
     display: flex;
-    flex-direction: row;
-    grid-template-columns: 1fr 10px;
+    flex-direction: column;
     align-items: center;
+    gap: 20px;
+}
+
+.results h3 {
+    margin-top: 1px;
+    margin-bottom: 10px;
+}
+
+/* Container for download buttons */
+.download-buttons {
+    display: flex;
     gap: 10px;
-    /* Adds spacing between buttons */
+    justify-content: center;
+    width: 100%;
 }
 
-/* Apply a larger gap to the first element */
-.results>*:first-child {
-    margin-right: 50px;
-    /* Larger gap for the first item */
-}
-
-/* === Download Buttons (Keyword Match & Excerpts) === */
-.results .download-button {
+.download-button {
     display: inline-flex;
     justify-content: center;
+    font-weight: 600;
     width: 120px;
-    height: 30px;
+    height: 35px;
     align-items: center;
-    line-height: 1;
     font-size: 16px;
     font-family: 'Work Sans', sans-serif;
     cursor: pointer;
     text-align: center;
     text-decoration: none;
-    outline: none;
     color: #fff;
-    background-color: #b33057;
+    background-color: #2c2b2b;
     border: none;
     border-radius: 10px;
     padding: 10px 15px;
 }
 
-.results .download-button:hover {
-    background-color: #de6569;
+.download-button:hover {
+    background-color: #000000;
+}
+
+/* Responsive Design: Stack containers vertically on smaller screens */
+@media (max-width: 768px) {
+    .container {
+        width: 90%;
+    }
 }
