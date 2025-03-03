@@ -110,18 +110,19 @@ keyword-scanner/
 pip install -r requirements.txt
 ```
 
-1. **Download the  `dei_terms.txt` file**
+4. **Download the  `dei_terms.txt` file**
    Ensure that the file dei_terms.txt (which contains the list of keywords, one per line) is placed in the project root.
 
-2. **Run the app**
+5. **Run the app**
+
 - In your local machine:
-   Open your terminal in the project directory and run
+   - Open your terminal in the project directory and run
 
 ```bash
 python app.py
 ```
 
-- To access the app, copy and paste the http:// link displayed your terminal into a browser.
+  - To access the app locally, copy and paste the *http://* link displayed your terminal into a browser.
 
 - Deploy on a server:
   - On Render: Create a Render account; connect your GitHub repository; set up environment variables as needed, and deploy the app as a Web Service.
