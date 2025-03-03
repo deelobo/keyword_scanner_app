@@ -66,7 +66,7 @@ When a keyword is found, the app records the occurrence, extracts the sentence w
 ## Create your own keyword scanner!
 Follow these steps to set it up locally or deploy your own instance.
 
-## Prerequisites
+### Prerequisites
 
 - Python 3.6 or higher
 - A`requirements.txt` file  containing all necessary libraries
@@ -81,7 +81,7 @@ Follow these steps to set it up locally or deploy your own instance.
    - openpyxl==3.1.2
 ```
 
-## Setup
+### Setup
 
 1. **Fork or Download the Repository:**
    Fork the repository on GitHub or download its contents to your local machine.
@@ -127,7 +127,7 @@ python app.py
   - On Render: Create a Render account; connect your GitHub repository; set up environment variables as needed, and deploy the app as a Web Service.
   - See [Render Tutorial](https://render.com/docs/your-first-deploy)
 
-### References and Links
+## References and Links
 
 - U.S. Senate Committee on Commerce, Science & Transportation Report (2024). **DEI: Division. Extremism. Ideology: How the Biden-Harris NSF Politicized Science**. Available at https://www.commerce.senate.gov/services/files/4BD2D522-2092-4246-91A5-58EEF99750BC
   
