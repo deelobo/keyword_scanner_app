@@ -1,12 +1,10 @@
 ## Keyword Scanner
 
-This repository contains a simple web application built with Python and Flask to automate the scanning of documents for approx. **700 keywords and phrases** identified as "DEI terms" in the 2024 report titled "DEI: Division. Extremism. Ideology: How the Biden-Harris NSF Politicized Science" by the U.S. Senate Committee on Commerce, Science, and Transportation.
-
-**What does the app do?** It extracts text from documents of different file types, searches for keyword matches, and generates keyword match summary and excerpt reports in a spreadsheet format. For more details, please see the [What the App Does and Limitations](https://github.com/deelobo/keyword_scanner_app#what-the-app-does-and-limitations) section below.
-
-**Link to web application:**
 [https://keyword-scanner-app.onrender.com](https://keyword-scanner-app.onrender.com)
 
+This repository contains a simple web application built with Python and Flask to automate the scanning of documents for approx. **700 keywords and phrases** identified as "DEI terms" in the 2024 report titled "DEI: Division. Extremism. Ideology: How the Biden-Harris NSF Politicized Science" by the U.S. Senate Committee on Commerce, Science, and Transportation.
+
+**What does the app do?** It extracts text from documents, searches for keyword matches, and generates keyword match summary and excerpt reports in a spreadsheet format. For more details, please see the [What the App Does and Limitations](https://github.com/deelobo/keyword_scanner_app#what-the-app-does-and-limitations) section below.
 
 **Important notes (please read it!)**:
 
@@ -107,7 +105,7 @@ keyword-scanner/
 pip install -r requirements.txt
 ```
 
-4. **Download the  `dei_terms.txt` file**
+4. **Download the  `dei_terms.txt` file:**
    Ensure that the file dei_terms.txt (which contains the list of keywords, one per line) is placed in the project root.
 
 5. **Run the app**
