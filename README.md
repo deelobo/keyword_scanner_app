@@ -114,7 +114,7 @@ pip install -r requirements.txt
 
 5. **Run the app**
 
-- In your local machine:
+- **In your local machine**:
    - Open your terminal in the project directory and run
 
 ```bash
@@ -123,7 +123,7 @@ python app.py
 
   - To access the app locally, copy and paste the *http://* link displayed your terminal into a browser.
 
-- Deploy on a server:
+- **Deploy on a server**:
   - On Render: Create a Render account; connect your GitHub repository; set up environment variables as needed, and deploy the app as a Web Service.
   - See [Render Tutorial](https://render.com/docs/your-first-deploy)
 
