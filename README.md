@@ -10,13 +10,13 @@ This repository contains a simple web application built with Python and Flask to
 
 1. **First things first**: I *do not* endorse the political viewpoints, ideologies, and conclusions presented in the report.
 
-2. The deployed app (link above) is running on a free-tier plan (free instance provided by the hosting site - Thanks, Render!), which comes with limitations:
+2. The deployed app (link above) is running on a free instance (a free-tier plan provided by the hosting site), which comes with limitations:
    - 🐢 It runs slowly.
    - ⏳ It will automatically spin down after 15 minutes of inactivity. Bringing the server back online may take about a minute or so.
    - 🚫 It may stop working entirely if the monthly usage limit has been reached.
-   - 🔧 As of now, I don't plan to upgrade the hosting instance. I encourage you to create your own app! See how [here](https://github.com/deelobo/keyword_scanner_app/tree/main#create-your-own-keyword-scanner)
+   - 🔧 As of now, I don't plan to upgrade the hosting instance. I encourage you to create your own app! See general instructions: [here](https://github.com/deelobo/keyword_scanner_app/tree/main#create-your-own-keyword-scanner).
 
-3. ⚠️ This application **was not** designed or tested for production or commercial use. It is an experimental project, and **I welcome your contributions to improve it!**
+3. ⚠️ This application **was not** designed or tested for production or commercial use. It is an experimental project and **contributions to improve it are welcome and appreciated**! You can help improve this app by sending pull requests through GitHub!
 
 ## Usage
 
