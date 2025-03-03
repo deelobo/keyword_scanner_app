@@ -69,7 +69,6 @@ Follow these steps to set it up locally or deploy your own instance.
 ## Prerequisites
 
 - Python 3.6 or higher
-
 - A`requirements.txt` file  containing all necessary libraries
   
 ```
