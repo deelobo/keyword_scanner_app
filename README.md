@@ -11,9 +11,9 @@ This repository contains a simple web application built with Python and Flask to
 1. **First things first**: I *do not* endorse the political viewpoints, ideologies, and conclusions presented in the report.
 
 2. The deployed app (link above) is running on a free instance (a free-tier plan provided by the hosting site), which comes with limitations:
-   - 🐢 It runs slowly.
-   - ⏳ It will automatically spin down after 15 minutes of inactivity. Bringing the server back online may take about a minute or so.
-   - 🚫 It may stop working entirely if the monthly usage limit has been reached.
+   - 🐢 **Slow performance:** The app may take time to load and process files.
+   - ⏳ **Automatic spin-down:** The server will go offline after 15 minutes of inactivity. Bringing it back online may take about a minute.
+   - 🚫  **Usage limits:** It may stop working entirely if the monthly usage limit has been reached.
    - 🔧 As of now, I don't plan to upgrade the hosting instance. I encourage you to create your own app! See general instructions: [here](https://github.com/deelobo/keyword_scanner_app/tree/main#create-your-own-keyword-scanner).
 
 3. ⚠️ This application **was not** designed or tested for production or commercial use. It is an experimental project and **contributions to improve it are welcome and appreciated**! You can help improve this app by sending pull requests through GitHub!
@@ -21,9 +21,9 @@ This repository contains a simple web application built with Python and Flask to
 ## Usage
 
 ### 📤 Upload Documents
-- Use the drag & drop area or click to select files. Multiple files can be uploaded at once. 
+- Use the drag & drop area or click to select files. **Multiple files can be uploaded at once**.
 - Supported file formats include text files (.txt, .docx), PDFs (.pdf), and spreadsheet files (.csv, .xls, .xlsx).
-  **Note**: Scanned or image-based PDFs and image files are not supported at this time.
+  **Note**: Scanned PDFs and image files are not supported at this time.
 
 ### 🔍 Scan Documents
 - Click the "scan" button to begin processing. 
@@ -43,13 +43,16 @@ The app uses Python’s regular expression library (`re`) to perform exact keywo
 #### 📝 Text Extraction and Sentence Segmentation
 The app extracts text from documents and split it into sentences using a regular expression designed to detect sentence boundaries (e.g., periods, question marks) while minimizing false splits (e.g., avoiding splits on abbreviations like "U.S." or "Dr.").
 
-#### 🔍 Case-Insensitive Search, Whole-Word Matching
+#### 🔍 Case-Insensitive Search with Whole-Word Matching
 Each sentence is scanned for the target keywords using a regular expression with word boundary markers (\b). The search is case-insensitive to ensure consistent matching regardless of text formatting.
 
-#### 📊 Extraction and Counting
-When a keyword is found, the app records the occurrence, extracts the sentence where the keywords appear, and updates a frequency count for each matched term. Results are saved in two CSV files:
-- A keyword match summary report listing: matched terms, the total number of matched terms, and the frequency of each term per document.
-- An excerpt report containing each matched term and the corresponding sentences where the keywords appear.
+#### 📊 Keyword Extraction and Counting
+When a keyword is found, the app records the occurrence, extracts the sentence where the keywords appear, and updates a frequency count for each matched term.
+
+#### 📝 Report Generation
+After processing the text, the app produces two CSV reports:
+- Keyword Match Summary Report: Lists the matched terms, the total number of matched terms, and the frequency of each term.
+- Excerpt Report: Contains the matched keywords paired with the sentences in which they appear.
 
 
 ### Some Limitations (Others Might Exist!)
