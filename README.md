@@ -1,6 +1,6 @@
-## [Keyword Scanner](https://keyword-scanner-app.onrender.com){target="_blank"}
+## Keyword Scanner
 
-[https://keyword-scanner-app.onrender.com](https://keyword-scanner-app.onrender.com){target="_blank"}
+[https://keyword-scanner-app.onrender.com](https://keyword-scanner-app.onrender.com)
 
 This repository contains a simple web application built with Python and Flask to automate the scanning of documents for approx. **700 keywords and phrases** identified as "DEI terms" in the 2024 report titled "DEI: Division. Extremism. Ideology: How the Biden-Harris NSF Politicized Science" by the U.S. Senate Committee on Commerce, Science, and Transportation.
 
