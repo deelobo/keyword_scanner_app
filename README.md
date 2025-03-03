@@ -8,7 +8,7 @@ This repository contains a simple web application built with Python and Flask to
 [https://keyword-scanner-app.onrender.com](https://keyword-scanner-app.onrender.com)
 
 
-**Important notes (read it!)**:
+**Important notes (please read it!)**:
 
 1. **First things first**: I *do not* endorse the political viewpoints, ideologies, and conclusions presented in the report.
 
