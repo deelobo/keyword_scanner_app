@@ -14,7 +14,6 @@ This repository contains a simple web application built with Python and Flask to
    - 🐢 **Slow performance:** The app may take time to load and process files.
    - ⏳ **Automatic spin-down:** The server will go offline after 15 minutes of inactivity. Bringing it back online may take about a minute.
    - 🚫  **Usage limits:** It may stop working entirely if the monthly usage limit has been reached.
-   - 🔧 As of now, I don't plan to upgrade the hosting instance. I encourage you to create your own app! See general instructions: [here](https://github.com/deelobo/keyword_scanner_app/tree/main#create-your-own-keyword-scanner).
 
 3. ⚠️ This application **was not** designed or tested for production or commercial use. It is an experimental project and **contributions to improve it are welcome and appreciated**! You can help improve this app by sending pull requests through GitHub!
 
@@ -50,9 +49,9 @@ Each sentence is scanned for the target keywords using a regular expression with
 When a keyword is found, the app records the occurrence, extracts the sentence where the keywords appear, and updates a frequency count for each matched term.
 
 #### 📝 Report Generation
-After processing the text, the app produces two CSV reports:
-- Keyword Match Summary Report: Lists the matched terms, the total number of matched terms, and the frequency of each term.
-- Excerpt Report: Contains the matched keywords paired with the sentences in which they appear.
+After processing the text, the app produces two **.csv** reports:
+- Keyword match summary: Lists the matched terms, the total number of matched terms, and the frequency of each term.
+- Excerpts: Contains the matched keywords paired with the sentences in which they appear.
 
 
 ### Some Limitations (Others Might Exist!)
@@ -62,13 +61,14 @@ After processing the text, the app produces two CSV reports:
 - **No OCR Support**: The code extracts text only from documents with selectable/searchable text. For scanned images or PDFs without embedded text, an OCR solution would need to be integrated.
 
 
-## Create your own keyword scanner!
-Follow these steps to set it up locally or deploy your own instance.
+## Development and deployment
+
+The application is developed in Python using Flask, with the keyword list provided in `dei_terms.txt` and dependencies managed via `requirements.txt`. The structure is designed to keep uploads and generated reports separate, with dedicated folders (uploads/ and results/), while the user interface is maintained in the templates/ and static/ directories.
 
 ### Prerequisites
 
 - Python 3.6 or higher
-- A`requirements.txt` file  containing all necessary libraries
+- Python libraries
   
 ```
    - Flask==2.2.3
@@ -80,52 +80,21 @@ Follow these steps to set it up locally or deploy your own instance.
    - openpyxl==3.1.2
 ```
 
-### Setup
+### Deployment
 
-1. **Fork or Download the Repository:**
-   Fork the repository on GitHub or download its contents to your local machine.
-
-2. **Review the Folder Structure:**
-   Your project should be organized as follows:
-
-```
-keyword-scanner/
-├── app.py                 # Main Flask application
-├── dei_terms.txt          # File containing keywords (one per line)
-├── requirements.txt       # List of Python dependencies
-├── uploads/               # Directory where uploaded files are saved
-├── results/               # Directory for generated Excel reports
-├── templates/
-│   └── index.html         # HTML template for the web interface
-└── static/
-    └── style.css          # CSS styles for the UI (and any other static assets)
-```
-
-3. **Install Dependencies:**
-   - Open your terminal in the project directory and run:
+**For local deployment**, install dependencies and run the application.
 
 ```bash
 pip install -r requirements.txt
 ```
-
-4. **Download the  `dei_terms.txt` file:**
-   Ensure that the file dei_terms.txt (which contains the list of keywords, one per line) is placed in the project root.
-
-5. **Run the app**
-
-- **In your local machine**:
-   - Open your terminal in the project directory and run
-
+  
 ```bash
 python app.py
 ```
 
-  - To access the app locally, copy and paste the *http://* link displayed your terminal into a browser.
-
-- **Deploy on a server**:
-  - On Render: Create a Render account; connect your GitHub repository; set up environment variables as needed, and deploy the app as a Web Service.
-  - See [Render Tutorial](https://render.com/docs/your-first-deploy)
-
+**For cloud deployment**, see [Render Tutorial](https://render.com/docs/your-first-deploy)
+  
+  
 ## References and Links
 
 - U.S. Senate Committee on Commerce, Science & Transportation Report (2024). **DEI: Division. Extremism. Ideology: How the Biden-Harris NSF Politicized Science**. Available at https://www.commerce.senate.gov/services/files/4BD2D522-2092-4246-91A5-58EEF99750BC
