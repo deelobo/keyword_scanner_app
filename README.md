@@ -4,7 +4,7 @@ This repository contains a simple web application built with Python and Flask to
 
 **Important notes (please read it!)**:
 
-1. **First things first**: I ***do not*** endorse the political viewpoints, ideologies, and conclusions presented in the report. I **strongly** urge you not to use this tool on documents not written by you or for which you do not have explicit permission from the author(s).
+1. **First things first**: I ***do not*** endorse the political viewpoints, ideologies, and conclusions presented in the report. I strongly urge you **not** to use this tool on documents not written by you or for which you do not have explicit permission from the author(s).
 
 2. The deployed app is running on a free instance (a free-tier plan provided by the hosting site), which comes with limitations:
    - 🐢 **Slow performance:** The app may take time to load and process files.
