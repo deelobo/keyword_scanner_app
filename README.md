@@ -1,6 +1,7 @@
 ## Keyword Scanner
 
-This repository contains a simple web application built with Python and Flask to automate the scanning of documents for approx. **700 keywords and phrases** listed in Appendix B of the 2024 report *"DEI: Division. Extremism. Ideology: How the Biden-Harris NSF Politicized Science"* by the U.S. Senate Committee on Commerce, Science, and Transportation.
+This repository contains a simple web application built with Python and Flask to automate the scanning of documents for keywords and phrases associated with 'woke' initiatives, as referenced in the 2024 report *"DEI: Division. Extremism. Ideology: How the Biden-Harris NSF Politicized Science"* by the U.S. Senate Committee on Commerce, Science, and Transportation.
+
 
 **Important notes (please read it!)**:
 
@@ -50,7 +51,7 @@ Upon detecting a keyword, the app logs the occurrence, extracts the correspondin
 ### Some Limitations (Others Might Exist!)
 
 - **Scale and Performance**: The app was designed for small-scale, non-production use and handles small documents and files well (e.g., 2–4 pages, files with a few MB in size). Processing large text files or spreadsheets may result in slower performance or failure.
-- **Exact Term Matching Only**: The app detects only the exact terms as they appear in the provided list. It does not account for typographical errors or context-dependent meanings.
+- **Exact Term Matching Only**: The app detects only the exact terms as they appear in the provided reference list. It does not account for typographical errors or context-dependent meanings. The list is sourced from Appendix B of the report and may be updated regularly with information from reputable sources discussing language used in official governmental communications.
 - **No OCR Support**: The code extracts text only from documents with selectable/searchable text. For scanned images or PDFs without embedded text, an OCR solution would need to be integrated.
 
   
